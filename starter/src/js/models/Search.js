@@ -1,5 +1,6 @@
 /* jshint esversion: 8 */
 import axios from 'axios';
+import {elements} from './views/base';
 
 export default class Search {
   constructor(query){
@@ -11,9 +12,9 @@ export default class Search {
     try{
       const res = await axios(`https://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
       this.result = res.data.recipes;
-      console.log(recipes);
+      // console.log(this.result);
     } catch(err){
-        alert(err);
+        alert(error);
     }
 
   }
