@@ -1,6 +1,6 @@
 /* jshint esversion: 8 */
 import axios from 'axios';
-import {elements} from './views/base';
+import {elements} from '../views/base';
 
 export default class Search {
   constructor(query){
