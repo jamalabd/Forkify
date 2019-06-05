@@ -1,5 +1,6 @@
 /* jshint esversion: 8 */
 import Search from './models/Search';
+import Recipe from './models/recipe';
 import * as searchView from './views/searchView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
@@ -10,6 +11,8 @@ import {elements, renderLoader, clearLoader} from './views/base';
 // - Liked object
 const state = {};
 
+// Search controller
+// v    v    v
 const controlSearch = async () => {
   // 1) Get query from view
   const query = searchView.getInput();
@@ -48,3 +51,27 @@ elements.searchResPages.addEventListener('click', e =>{
   }
 
 });
+
+// recipe controller
+// v    v    v
+const controlRecipe = () => {
+  // Get ID from URL
+  const id = window.location.hash.replace('#','');
+  console.log(id);
+
+  if (id) {
+    // Prepare UI for changes
+
+    // Create a new recipe object
+
+    // Get recipe dataset
+
+    // Calc servings and time
+
+    // render recipe
+  }
+
+
+};
+
+window.addEventListener('hashchange', controlRecipe);
