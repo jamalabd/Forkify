@@ -109,10 +109,13 @@ const controlList = () =>{
 
   // add each ingredient to the new list
   state.recipe.ingredients.forEach(el => {
-    const item = state.list.addItem(el.count, el.unit, el.ingrediant);
+    const item = state.list.addItem(el.count, el.unit, el.ingredient);
     listView.renderItem(item);
   });
 };
+
+// handle deleting and updating list items
+
 
 
 // handling recipe button clicks
