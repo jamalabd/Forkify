@@ -1,8 +1,10 @@
 /* jshint esversion: 8 */
 import Search from './models/Search';
 import Recipe from './models/recipe';
+import List from './models/list';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
 //** Global state of the app
@@ -100,9 +102,33 @@ const controlRecipe = async () => {
 
 ['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
 
+// list contoller
+const controlList = () =>{
+  // creat a new list is there is not one
+  if (!state.list) state.list = new List();
+
+  // add each ingredient to the new list
+  state.recipe.ingredients.forEach(el => {
+    const item = state.list.addItem(el.count, el.unit, el.ingrediant);
+    listView.renderItem(item);
+  });
+};
+
+
 // handling recipe button clicks
 elements.recipe.addEventListener('click', e =>{
   if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+    // decrese button is clicked
+    if (state.recipe.servings > 1) {
+      state.recipe.updateServings('dec');
+      recipeView.updateServingsIngredients(state.recipe);
+    }
 
+  }else if (e.target.matches('.btn-increase, .btn-increase *')) {
+    // increase button is clicked
+    state.recipe.updateServings('inc');
+    recipeView.updateServingsIngredients(state.recipe);
+  }else if (e.target.matches('.recipe__btn--add, recipe__btn--add *')) {
+    controlList();
   }
 });

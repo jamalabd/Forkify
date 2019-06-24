@@ -106,7 +106,7 @@ export default class Recipe {
 
     // ingrediants
 
-    this.ingredients.forEach(el =>{
+    this.ingredients.forEach(ing =>{
       ing.count *= (ing.count/newServings);
     });
     this.servings = newServings;
